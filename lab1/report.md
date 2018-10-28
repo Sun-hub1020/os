@@ -2,27 +2,27 @@
 
 在/lab1_result下运行make
 
-![Selection_019](/home/lzh/Pictures/Selection_019.png)
+![Selection_019](/home/lzh/CodeStore/Mytest/lab1/img/Selection_019.png)
 
 在lab1_result下运行qemu-system-i386 -S -s -hda ./bin/ucore.img -monitor stdio
 
 可以打开qemu
 
-![Selection_021](/home/lzh/Pictures/Selection_021.png)
+![Selection_021](/home/lzh/CodeStore/Mytest/lab1/img/Selection_021.png)ng)
 
 qemu中的CPU并不会马上开始执行，这时我们启动gdb，然后在gdb命令行界面下，使用下面的命令连接到qemu：
 
-![Selection_022](/home/lzh/Pictures/Selection_022.png)
+![Selection_022](/home/lzh/CodeStore/Mytest/lab1/img/Selection_022.png)
 
 Target remote:1234
 
 然后测试一下memset,并在12打一个断点，此时qemu出现booting from hard disk...
 
-![Selection_023](/home/lzh/Pictures/Selection_023.png)
+![Selection_023](/home/lzh/CodeStore/Mytest/lab1/img/Selection_023.png)
 
 继续运行c，直到qemu模拟器出现100triks
 
-![Selection_024](/home/lzh/Pictures/Selection_024.png)
+![Selection_024](/home/lzh/CodeStore/Mytest/lab1/img/Selection_024.png)/Selection_024.png)
 
 2. #### 练习3
 
@@ -132,13 +132,15 @@ Target remote:1234
    idt [256]是IDT,使用SETGATE宏来设置IDT的每个项目
    （3）设置IDT的内容后，通过“lidt”指令让CPU知道IDT在哪里。
    你不知道这条指令的意思吗？ 只是谷歌吧！ 并检查libs / x86.h以了解更多信息。
-   注意：lidt的参数是idt_pd。 试着找到它！   ![1540536445065](/home/lzh/.config/Typora/typora-user-images/1540536445065.png)
+   注意：lidt的参数是idt_pd。 试着找到它！
+
+   ![6-1](/home/lzh/CodeStore/Mytest/lab1/img/6-1.png)
 
    **A3: 处理定时器中断**
    ​         **（1）定时器中断后，使用全局变量（增加它）记录这个事件，比如kern / driver / clock.c中的ticks**
    ​        **（2）每个TICK_NUM循环，您可以使用函数打印一些信息，例如print_ticks()**
 
- ![1540536560397](/home/lzh/.config/Typora/typora-user-images/1540536560397.png)
+![6-2](/home/lzh/CodeStore/Mytest/lab1/img/6-2.png)
 
 #### 4.实验小结
 
