@@ -1,3 +1,5 @@
+
+
 1. #### 在shell下调试lab1_result下ucore过程
 
 在/lab1_result下运行make
@@ -126,19 +128,25 @@ Target remote:1234
    **所有ISR的都存储在__vectors中。__**
 
    **__vectors []在kern / trap / vector.S中，由tools / vector.c生成**
+
    （在lab1中尝试“make”命令，在kern / trap DIR中找到vector.S）
    使用“extern uintptr_t __vectors [];” 定义将在以后使用的外部变量。
+
    （2）在中断描述表（IDT）中设置ISR的条目。
    idt [256]是IDT,使用SETGATE宏来设置IDT的每个项目
+
    （3）设置IDT的内容后，通过“lidt”指令让CPU知道IDT在哪里。
    你不知道这条指令的意思吗？ 只是谷歌吧！ 并检查libs / x86.h以了解更多信息。
+
    注意：lidt的参数是idt_pd。 试着找到它！
 
    ![6-1](/home/lzh/CodeStore/Mytest/lab1/img/6-1.png)
 
    **A3: 处理定时器中断**
    ​         **（1）定时器中断后，使用全局变量（增加它）记录这个事件，比如kern / driver / clock.c中的ticks**
+
    ​        **（2）每个TICK_NUM循环，您可以使用函数打印一些信息，例如print_ticks()**
+
 
 ![6-2](/home/lzh/CodeStore/Mytest/lab1/img/6-2.png)
 
