@@ -1,6 +1,7 @@
-## Record for the os labo.
+## Record for the os lab
 
 **Environment:**
+
 Description:	Ubuntu 16.04 LTS
 
 Release:	16.04
