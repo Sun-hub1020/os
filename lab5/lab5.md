@@ -33,7 +33,7 @@
 
 首先，找到函数所在位置
 
-![Selection_041](/home/lzh/Pictures/Selection_041.png)
+![Selection_041](./lab5/img/1.png)
 
 #### **(1)现在，分析sys_exit函数的功能**
 
