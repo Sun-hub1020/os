@@ -37,27 +37,27 @@
 
 #### **(1)现在，分析sys_exit函数的功能**
 
-![1541509861957](/home/lzh/.config/Typora/typora-user-images/1541509861957.png)
+![1541509861957](./img/2.png)
 
 所以这里实际完成process exit的是do_exit函数，在proc.c下查看do_exit函数
 
-![Selection_044](/home/lzh/Pictures/Selection_044.png)
+![Selection_044](./img/3.png)
 
 **然后添加注释，分析其功能.**
 
 **可以发现，sys_exit就是执行退出操作，释放进程占用的资源。由于进程本身要做回收，所以要存在来执行这个操作，导致进程存在的PCB和内核栈空间不能释放，所以需要父进程来释放子进程无法完成的回收工作**
 
-![1541513239025](/home/lzh/.config/Typora/typora-user-images/1541513239025.png)
+![1541513239025](./img/4.png)
 
-![Selection_046](/home/lzh/Pictures/Selection_046.png)
+![Selection_046](./img/5.png)
 
 #### **(2)sys_fork函数**
 
-![1541514880420](/home/lzh/.config/Typora/typora-user-images/1541514880420.png)
+![1541514880420](./img/6.png)
 
 同样，在proc.c中找到完成创建工作的do_fork函数
 
-![1541514957146](/home/lzh/.config/Typora/typora-user-images/1541514957146.png)
+![1541514957146](./img/7.png)
 
 **然后添加注释，分析其功能.**
 
@@ -71,29 +71,29 @@
 6. 自此，进程已经准备好执行了，把进程状态设置为“就绪”态；
 7. 设置返回码为子进程的id号。
 
-![1541515165323](/home/lzh/.config/Typora/typora-user-images/1541515165323.png)
+![1541515165323](./img/8.png)
 
 #### **(3)sys_wait函数**
 
-![1541515578843](/home/lzh/.config/Typora/typora-user-images/1541515578843.png)
+![1541515578843](./img/9.png)
 
 **找到do_wait函数，可以看出其功能是等待一个或者任何处于僵尸状态的子进程，然后释放其内核栈空间和PCB,即回收子进程的内核栈和进程控制块所占内存空间，并且只有在do_wait之后，子进程的所有资源才能被释放**
 
 **添加注释**
 
-![1541515961022](/home/lzh/.config/Typora/typora-user-images/1541515961022.png)
+![1541515961022](./img/10.png)
 
-![1541516010206](/home/lzh/.config/Typora/typora-user-images/1541516010206.png)
+![1541516010206](./img/11.png)
 
 #### **(4)sys_exec函数**
 
-![1541516174278](/home/lzh/.config/Typora/typora-user-images/1541516174278.png)
+![1541516174278](./img/12.png)
 
 **通过do_execve函数来完成用户进程的创建工作，首先清空用户态空间为加载新的代码做准备，然后加载程序执行码到当前进程创建的用户态虚拟空间中。**
 
 **添加注释**
 
-![1541516578107](/home/lzh/.config/Typora/typora-user-images/1541516578107.png)
+![1541516578107](./img/13.png)
 
 #### (5)用户进程执行转换图
 
@@ -117,25 +117,25 @@ process state       :     meaning               -- reason
 
 ```
 
-![1541518190997](/home/lzh/.config/Typora/typora-user-images/1541518190997.png)
+![1541518190997](./img/14.png)
 
 ### lab6练习1
 
 #### **(1)找到sched_class结构**
 
-![1541520041815](/home/lzh/.config/Typora/typora-user-images/1541520041815.png)
+![1541520041815](./img/15.png)
 
 **schedule函数完成了与调度框架和调度算法相关三件事情:把当前继续占用CPU执行的运行进程放放入到就绪进程队列中，从就绪进程队列中选择一个“合适”就绪进程，把这个“合适”的就绪进程从就绪进程队列中摘除。**
 
-![1541519346610](/home/lzh/.config/Typora/typora-user-images/1541519346610.png)
+![1541519346610](./img/16.png)
 
 **查看proc_run函数,这个和lab4中涉及到了，即调度并执行第一个内核线程initproc的时候**
 
-![1541519729556](/home/lzh/.config/Typora/typora-user-images/1541519729556.png)
+![1541519729556](./img/17.png)
 
 **RR_sched_class的调度策略类**
 
-![1541520152030](/home/lzh/.config/Typora/typora-user-images/1541520152030.png)
+![1541520152030](./img/18.png)
 
 #### **(2)RR调度算法：**
 
@@ -149,29 +149,29 @@ process state       :     meaning               -- reason
 
 将上一个在一个时间片内还没有运行完的进程插入到就绪队列的末尾，然后重置其时间片大小
 
-![Selection_062](/home/lzh/Pictures/Selection_062.png)
+![Selection_062](./img/19.png)
 
 ##### **(2-2)RR_pick_next函数:**
 
 **取出就绪队列rg的队首元素，然后通过le2proc函数将其转换**
 
-![1541571245291](/home/lzh/.config/Typora/typora-user-images/1541571245291.png)
+![1541571245291](./img/20.png)
 
 le2proc函数:将le转换为proc_struct指针
 
-![1541571419074](/home/lzh/.config/Typora/typora-user-images/1541571419074.png)
+![1541571419074](./img/21.png)
 
 ##### (2-3)RR_proc_tick函数
 
 即每次timer到时后，trap函数将会间接调用此函数来把当前执行进程的时间片time_slice减一。如果time_slice降到零，则设置此进程成员变量need_resched标识为1，这样在下一次中断来后执行trap函数时，会由于当前进程程成员变量need_resched标识为1而执行schedule函数，从而把当前执行进程放回就绪队列末尾，而从就绪队列头取出在就绪队列上等待时间最久的那个就绪进程执行。
 
-![Selection_066](/home/lzh/Pictures/Selection_066.png)
+![Selection_066](./img/22.png)
 
 ##### **(2-4)RR_dequeue函数:**
 
 **把就绪进程队列rq的进程控制块指针的队列元素删除，并把表示就绪进程个数的proc_num减一**
 
-![Selection_067](/home/lzh/Pictures/Selection_067.png)
+![Selection_067](./img/23.png)
 
 
 
