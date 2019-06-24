@@ -4,27 +4,27 @@
 
 在/lab1_result下运行make
 
-![lab1_make](https://github.com/Chasssser/Mytest/blob/master/lab1/img/Selection_019.png)
+![lab1_make](../lab1/img/Selection_019.png)
 
 在lab1_result下运行qemu-system-i386 -S -s -hda ./bin/ucore.img -monitor stdio
 
 可以打开qemu
 
-![Selection_021](https://github.com/Chasssser/Mytest/blob/master/lab1/img/Selection_021.png)ng)
+![Selection_021](../lab1/img/Selection_021.png)ng)
 
 qemu中的CPU并不会马上开始执行，这时我们启动gdb，然后在gdb命令行界面下，使用下面的命令连接到qemu：
 
-![Selection_022](https://github.com/Chasssser/Mytest/blob/master/lab1/img/Selection_022.png)
+![Selection_022](../lab1/img/Selection_022.png)
 
 Target remote:1234
 
 然后测试一下memset,并在12打一个断点，此时qemu出现booting from hard disk...
 
-![Selection_023](https://github.com/Chasssser/Mytest/blob/master/lab1/img/Selection_023.png)
+![Selection_023](../lab1/img/Selection_023.png)
 
 继续运行c，直到qemu模拟器出现100triks
 
-![Selection_024](https://github.com/Chasssser/Mytest/blob/master/lab1/img/Selection_024.png)/Selection_024.png)
+![Selection_024](../lab1/img/Selection_024.png)/Selection_024.png)
 
 2. #### 练习3
 
@@ -140,7 +140,7 @@ Target remote:1234
 
    注意：lidt的参数是idt_pd。 试着找到它！
 
-   ![6-1](https://github.com/Chasssser/Mytest/blob/master/lab1/img/6-1.png)
+   ![6-1](../lab1/img/6-1.png)
 
    **A3: 处理定时器中断**
    ​         **（1）定时器中断后，使用全局变量（增加它）记录这个事件，比如kern / driver / clock.c中的ticks**
@@ -148,7 +148,7 @@ Target remote:1234
    ​        **（2）每个TICK_NUM循环，您可以使用函数打印一些信息，例如print_ticks()**
 
 
-![6-2](https://github.com/Chasssser/Mytest/blob/master/lab1/img/6-2.png)
+![6-2](../lab1/img/6-2.png)
 
 #### 4.实验小结
 

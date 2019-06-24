@@ -10,17 +10,17 @@ alloc_proc函数（位于kern/process/proc.c中）负责分配并返回一个新
 
 现在/kern/process中找到proc.c
 
-![1540890728814](https://github.com/Chasssser/Mytest/blob/master/lab4/img/proc_struct_2.png)
+![1540890728814](../lab4/img/proc_struct_2.png)
 
 alloc_proc申请了一个proc_struct,即进程控制块
 
 在同一目录下找到pro_struct的定义，里面有各个成员的定义
 
-![1540890811436](https://github.com/Chasssser/Mytest/blob/master/lab4/img/proc_struct_1.png)
+![1540890811436](../lab4/img/proc_struct_1.png)
 
 可以找到proc_state，是表示一个进程在其生命周期里面的状态，分别有未分配，休眠，可运行，和僵尸状态。僵尸状态需要等待其父进程来回收其资源。由于此时是申请，所以为PROC_UNINIT。
 
-![proc_state](https://github.com/Chasssser/Mytest/blob/master/lab4/img/proc_state.png)
+![proc_state](../lab4/img/proc_state.png)
 
 pid指的是进程号，运行中的进程的进程号一般为非负数，所以此时设置一个负数来表示是刚申请未分配
 
@@ -30,7 +30,7 @@ pid指的是进程号，运行中的进程的进程号一般为非负数，所�
 ps aux
 ```
 
-![1540896246344](https://github.com/Chasssser/Mytest/blob/master/lab4/img/ps_aux.png)
+![1540896246344](../lab4/img/ps_aux.png)
 
 可以看到绝大部分进程的pid
 
@@ -60,7 +60,7 @@ runs:运行时间为0
 
 最后填写如下:
 
-![1540895946059](https://github.com/Chasssser/Mytest/blob/master/lab4/img/proc_struct_done.png)
+![1540895946059](../lab4/img/proc_struct_done.png)
 
 #### 练习2：为新创建的内核线程分配资源（需要编码）
 
@@ -78,13 +78,13 @@ runs:运行时间为0
 
 - 请说明ucore是否做到给每个新fork的线程一个唯一的id？请说明你的分析和理由。
 
-![do_fork-1](https://github.com/Chasssser/Mytest/blob/master/lab4/img/do_fork-1.png)
+![do_fork-1](../lab4/img/do_fork-1.png)
 
-![do_fork_2](https://github.com/Chasssser/Mytest/blob/master/lab4/img/do_fork_2.png)
+![do_fork_2](../lab4/img/do_fork_2.png)
 
 从get_pid()看，每当申请一个新的块，都会和原来的pid进行范围比较，以此来保证申请到唯一的pid
 
-![1540897682849](https://github.com/Chasssser/Mytest/blob/master/lab4/img/get_pid.png)
+![1540897682849](../lab4/img/get_pid.png)
 
 #### 项目组成 
 
