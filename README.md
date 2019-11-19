@@ -5,3 +5,5 @@
 3. FirstBird包含一个像素鸟小游戏(java)
 4. MiniPiano包含一个模拟钢琴(java)
 5. MyChat包含一个socket例子
+6. LinuxTest包含几个神经网络实验(使用Tensorflow完成)
+
